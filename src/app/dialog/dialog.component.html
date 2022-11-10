@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Add Employee Form</h1>
+<div mat-dialog-content>
+    <form [formGroup]="productionForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Employee ID</mat-label>
+            <input formControlName="employeeID" matInput placeholder="Ex: 22SD100">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Employee Department</mat-label>
+            <mat-select formControlName="department" placeholder="Department">
+                <mat-option value="SD">Software Development</mat-option>
+                <mat-option value="Trainee">Training</mat-option>
+                <mat-option value="Tester">Testin</mat-option>
+                <mat-option value="CS">Customer Service</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Salary</mat-label>
+            <input formControlName="salary" matInput placeholder="Ex: $10,000">
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+    <button mat-raised-button color="warn" class="buttonspacing" mat-dialog-close>Close</button>
+    <button mat-raised-button color="primary" class="buttonspacing" (click)="addEmployee()">Save</button>
+</div>
