@@ -2,25 +2,34 @@
   "employeeList": [
     {
       "employeeID": "22SD100",
-      "salary": "$.15000",
+      "salary": "15000",
       "department": "SD",
-      "id": 1
+      "id": 3
     },
     {
-      "employeeID": "22SD100",
-      "salary": "$.15000",
-      "department": "SD",
-      "id": 2
+      "employeeID": "22CS100",
+      "salary": "8000",
+      "department": "CS",
+      "id": 4
     }
   ],
-  "comments": [
+  "deptnewslist": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "title": "Freshers Employed",
+      "sub_title": "Recruitment drive",
+      "link": "Freshers",
+      "body": "Infosys is in the news this time for giving competitive compensation revisions to its employees. Also, the IT major plans to increase the hiring target for the next year.",
+      "id": 1
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "Leave-Details": [
+    {
+      "FromDate": "2022-11-09T18:30:00.000Z",
+      "ToDate": "2022-11-11T18:30:00.000Z",
+      "reason": "Fever",
+      "Attendance": "88%",
+      "Approval": "0",
+      "id": 1
+    }
+  ]
 }

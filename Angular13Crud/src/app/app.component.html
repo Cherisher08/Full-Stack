@@ -1,9 +1,327 @@
-<mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>supervised_user_circle</mat-icon>
-    </button>
-    <span>Employee Manager</span>
-    <span class="example-spacer"></span>
-    <button mat-raised-button color="warn" (click)="openDialog()" class="buttonspacing">Add Employee</button>
-    <button mat-raised-button color="warn" class="buttonspacing">Leave Approval</button>
-</mat-toolbar>
+<mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Manager">
+        <mat-toolbar color="primary">
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+          <mat-icon>supervised_user_circle</mat-icon>
+        </button>
+            <span>Employee Manager</span>
+            <span class="example-spacer"></span>
+            <button mat-raised-button color="warn" (click)="openDialog()" class="buttonspacing">Add Employee</button>
+        </mat-toolbar>
+
+        <div class="container">
+            <div styles="margin-top: 10px">
+                <mat-form-field appearance="standard">
+                    <mat-label>Filter</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+                </mat-form-field>
+
+                <div class="mat-elevation-z8">
+                    <table mat-table [dataSource]="dataSource" matSort>
+
+
+                        <ng-container matColumnDef="employeeID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Emp_ID </th>
+                            <td mat-cell *matCellDef="let row"> {{row.employeeID}} </td>
+                        </ng-container>
+
+
+                        <ng-container matColumnDef="department">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Department </th>
+                            <td mat-cell *matCellDef="let row"> {{row.department}} </td>
+                        </ng-container>
+
+
+                        <ng-container matColumnDef="salary">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Salary (in $) </th>
+                            <td mat-cell *matCellDef="let row"> {{row.salary | currency}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Others">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Other </th>
+                            <td mat-cell *matCellDef="let row">
+                                <mat-accordion>
+                                    <mat-expansion-panel hideToggle>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                This is the expansion title
+                                            </mat-panel-title>
+                                            <mat-panel-description>
+                                                This is a summary of the content
+                                            </mat-panel-description>
+                                        </mat-expansion-panel-header>
+                                        <p>This is the primary content of the panel.</p>
+                                    </mat-expansion-panel>
+                                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                Self aware panel
+                                            </mat-panel-title>
+                                            <mat-panel-description>
+                                                Currently I am {{panelOpenState ? 'open' : 'closed'}}
+                                            </mat-panel-description>
+                                        </mat-expansion-panel-header>
+                                        <p>I'm visible because I am open</p>
+                                    </mat-expansion-panel>
+                                </mat-accordion>
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Action">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+                            <td mat-cell *matCellDef="let row">
+                                <button mat-icon-button color="primary" (click)="deleteEmployee(row.id)">
+                                <mat-icon>delete</mat-icon>
+                              </button>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                        <!-- Row shown when there is no matching data. -->
+                        <tr class="mat-row" *matNoDataRow>
+                            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                        </tr>
+                    </table>
+
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                </div>
+
+            </div>
+        </div>
+        <hr>
+        <h1 class="header">Department News</h1>
+        <div class="deptnews">
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>Freshers Employed</mat-card-title>
+                    <mat-card-subtitle>Recruitment Drive</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src="https://www.financialexpress.com/wp-content/uploads/2019/05/cats-1564.jpg" alt="Photo of a Shiba Inu">
+                <mat-card-content>
+                    <p>
+                        About 200 freshers were employed from the recruitment drives held all over INDIA. the company already offers higher packages for employees with “premium” skills in digital technologies. “In line with that, we have decided to increase the compensation
+                        of entry-level engineering graduates, as digital technologies have become an integral part of engineering curricula in progressive institutions from where we recruit talent.
+                    </p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </mat-tab>
+    <mat-tab label="Department Head">
+        <mat-toolbar color="primary">
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+          <mat-icon>supervised_user_circle</mat-icon>
+        </button>
+            <span>Employee Manager</span>
+            <span class="example-spacer"></span>
+            <button mat-raised-button color="warn" (click)="editdeptnews(row)" class="buttonspacing">Add News</button>
+        </mat-toolbar>
+
+        <div class="container">
+            <div styles="margin-top: 10px">
+                <mat-form-field appearance="standard">
+                    <mat-label>Filter</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
+                </mat-form-field>
+
+                <div class="mat-elevation-z8">
+                    <table mat-table [dataSource]="dataSource" matSort>
+
+                        <!-- ID Column -->
+                        <ng-container matColumnDef="employeeID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Emp_ID </th>
+                            <td mat-cell *matCellDef="let row"> {{row.employeeID}} </td>
+                        </ng-container>
+
+                        <!-- Progress Column -->
+                        <ng-container matColumnDef="department">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Department </th>
+                            <td mat-cell *matCellDef="let row"> {{row.department}} </td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="salary">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Salary (in $) </th>
+                            <td mat-cell *matCellDef="let row"> {{row.salary | currency}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Others">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Other </th>
+                            <td mat-cell *matCellDef="let row">
+                                <mat-accordion>
+                                    <mat-expansion-panel hideToggle>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                This is the expansion title
+                                            </mat-panel-title>
+                                            <mat-panel-description>
+                                                This is a summary of the content
+                                            </mat-panel-description>
+                                        </mat-expansion-panel-header>
+                                        <p>This is the primary content of the panel.</p>
+                                    </mat-expansion-panel>
+                                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                Self aware panel
+                                            </mat-panel-title>
+                                            <mat-panel-description>
+                                                Currently I am {{panelOpenState ? 'open' : 'closed'}}
+                                            </mat-panel-description>
+                                        </mat-expansion-panel-header>
+                                        <p>I'm visible because I am open</p>
+                                    </mat-expansion-panel>
+                                </mat-accordion>
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Action">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+                            <td mat-cell *matCellDef="let row">
+                                <button mat-icon-button color="primary" (click)="deleteEmployee(row.id)">
+                                <mat-icon>check circle icon</mat-icon>
+                              </button>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                        <!-- Row shown when there is no matching data. -->
+                        <tr class="mat-row" *matNoDataRow>
+                            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                        </tr>
+                    </table>
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                </div>
+
+            </div>
+        </div>
+        <hr>
+        <h1 class="header">Department News</h1>
+        <div class="deptnews">
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>Freshers Employed</mat-card-title>
+                    <mat-card-subtitle>Recruitment Drive</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src="https://www.financialexpress.com/wp-content/uploads/2019/05/cats-1564.jpg" alt="Photo of a Shiba Inu">
+                <mat-card-content>
+                    <p>
+                        About 200 freshers were employed from the recruitment drives held all over INDIA. the company already offers higher packages for employees with “premium” skills in digital technologies. “In line with that, we have decided to increase the compensation
+                        of entry-level engineering graduates, as digital technologies have become an integral part of engineering curricula in progressive institutions from where we recruit talent.
+                    </p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </mat-tab>
+    <mat-tab label="Employee">
+        <mat-toolbar color="primary">
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+          <mat-icon>supervised_user_circle</mat-icon>
+        </button>
+            <span>Employee Manager</span>
+            <span class="example-spacer"></span>
+            <button mat-raised-button color="warn" (click)="openLeave()" class="buttonspacing">Leave Approval</button>
+        </mat-toolbar>
+
+        <div class="container">
+            <div styles="margin-top: 10px">
+                <mat-form-field appearance="standard">
+                    <mat-label>Filter</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
+                </mat-form-field>
+
+                <div class="mat-elevation-z8">
+                    <table mat-table [dataSource]="dataSource" matSort>
+
+                        <!-- ID Column -->
+                        <ng-container matColumnDef="employeeID">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Emp_ID </th>
+                            <td mat-cell *matCellDef="let row"> {{row.employeeID}} </td>
+                        </ng-container>
+
+                        <!-- Progress Column -->
+                        <ng-container matColumnDef="department">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Department </th>
+                            <td mat-cell *matCellDef="let row"> {{row.department}} </td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="salary">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Salary (in $) </th>
+                            <td mat-cell *matCellDef="let row"> {{row.salary | currency}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Others">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Other </th>
+                            <td mat-cell *matCellDef="let row">
+                                <mat-accordion>
+                                    <mat-expansion-panel hideToggle>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                This is the expansion title
+                                            </mat-panel-title>
+                                            <mat-panel-description>
+                                                This is a summary of the content
+                                            </mat-panel-description>
+                                        </mat-expansion-panel-header>
+                                        <p>This is the primary content of the panel.</p>
+                                    </mat-expansion-panel>
+                                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                Self aware panel
+                                            </mat-panel-title>
+                                            <mat-panel-description>
+                                                Currently I am {{panelOpenState ? 'open' : 'closed'}}
+                                            </mat-panel-description>
+                                        </mat-expansion-panel-header>
+                                        <p>I'm visible because I am open</p>
+                                    </mat-expansion-panel>
+                                </mat-accordion>
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Action">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+                            <td mat-cell *matCellDef="let row">Attendance%</td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                        <!-- Row shown when there is no matching data. -->
+                        <tr class="mat-row" *matNoDataRow>
+                            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                        </tr>
+                    </table>
+
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                </div>
+
+            </div>
+        </div>
+        <hr>
+        <h1 class="header">Department News</h1>
+        <div class="deptnews">
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>Freshers Employed</mat-card-title>
+                    <mat-card-subtitle>Recruitment Drive</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src="https://www.financialexpress.com/wp-content/uploads/2019/05/cats-1564.jpg" alt="Photo of a Shiba Inu">
+                <mat-card-content>
+                    <p>
+                        About 200 freshers were employed from the recruitment drives held all over INDIA. the company already offers higher packages for employees with “premium” skills in digital technologies. “In line with that, we have decided to increase the compensation
+                        of entry-level engineering graduates, as digital technologies have become an integral part of engineering curricula in progressive institutions from where we recruit talent.
+                    </p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </mat-tab>
+</mat-tab-group>
