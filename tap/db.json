@@ -1,0 +1,102 @@
+{
+    "chartdata": [{
+            "id": 1,
+            "data": [{
+                    "monyear": "Jan 2022",
+                    "Studentcount": 120,
+                    "colorcode": "rgba(255, 99, 132, 1)"
+                },
+                {
+                    "monyear": "Jun 2021",
+                    "Studentcount": 56,
+                    "colorcode": "rgba(54, 162, 235, 0.2)"
+                },
+                {
+                    "monyear": "Jan 2021",
+                    "Studentcount": 89,
+                    "colorcode": "rgba(54, 162, 235, 0.2)"
+                },
+                {
+                    "monyear": "Jun 2020",
+                    "Studentcount": 56,
+                    "colorcode": "rgba(54, 162, 235, 0.2)"
+                },
+                {
+                    "monyear": "Jan 2020",
+                    "Studentcount": 89,
+                    "colorcode": "rgba(54, 162, 235, 0.2)"
+                },
+                {
+                    "monyear": "Jun 2019",
+                    "Studentcount": 56,
+                    "colorcode": "rgba(54, 162, 235, 0.2)"
+                },
+                {
+                    "monyear": "Jan 2019",
+                    "Studentcount": 89,
+                    "colorcode": "rgba(54, 162, 235, 0.2)"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "data": [{
+                    "monyear": "Jan 2022",
+                    "Studentcount": 120,
+                    "colorcode": "rgba(255, 99, 132, 1)"
+                },
+                {
+                    "monyear": "Jun 2021",
+                    "Studentcount": 56,
+                    "colorcode": "rgba(54, 162, 235, 0.2)"
+                },
+                {
+                    "monyear": "Jan 2021",
+                    "Studentcount": 89,
+                    "colorcode": "rgba(54, 162, 235, 0.2)"
+                },
+                {
+                    "monyear": "Jun 2020",
+                    "Studentcount": 56,
+                    "colorcode": "rgba(54, 162, 235, 0.2)"
+                },
+                {
+                    "monyear": "Jan 2020",
+                    "Studentcount": 89,
+                    "colorcode": "rgba(54, 162, 235, 0.2)"
+                },
+                {
+                    "monyear": "Jun 2019",
+                    "Studentcount": 56,
+                    "colorcode": "rgba(54, 162, 235, 0.2)"
+                },
+                {
+                    "monyear": "Jan 2019",
+                    "Studentcount": 89,
+                    "colorcode": "rgba(54, 162, 235, 0.2)"
+                }
+            ]
+        }, {
+            "id": 3,
+            "data": [{
+                    "monyear": "Jan 2022",
+                    "Studentcount": 120,
+                    "colorcode": "rgba(255, 99, 132, 1)"
+                },
+                {
+                    "monyear": "Jun 2021",
+                    "Studentcount": 56,
+                    "colorcode": "rgba(54, 162, 235, 0.2)"
+                },
+                {
+                    "monyear": "Jan 2021",
+                    "Studentcount": 89,
+                    "colorcode": "rgba(54, 162, 235, 0.2)"
+                }
+            ]
+        }
+    ],
+    "singledata": [
+
+    ]
+}
