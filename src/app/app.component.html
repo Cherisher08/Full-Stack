@@ -1,0 +1,130 @@
+<div class="body" *ngIf="!user">
+    <div class="gbox">
+        <img class="logo" src=".\assets\logo.png" alt="Logo">
+        <div class="head">
+            <h1 class="headtext">Welcome to TAP!</h1>
+            <hr>
+        </div>
+        <div class="inner">
+            <asl-google-signin-button id="googlebtn"></asl-google-signin-button>
+            <input type="button" id="bluegoogle" value="Sign in" />
+        </div>
+    </div>
+</div>
+
+<div *ngIf="user">
+    <mat-toolbar>
+        <img class="resizeimg" src="./assets/logo.png" alt="Logo">
+        <span class="titletext">TAP!</span>
+        <span class="example-spacer"></span>
+        <div class="profile">
+            <span class="profiledetail">vignesh</span>
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon class="signoutcont" class="morevert">more_vert</mat-icon>
+      </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="signOut()">
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Sign-Out</span>
+          </button>
+            </mat-menu>
+        </div>
+    </mat-toolbar>
+
+    <mat-tab-group mat-align-tabs="start" animationDuration="0ms">
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">home</mat-icon>
+                HOME
+            </ng-template>
+            Content 1
+        </mat-tab>
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">question_answer</mat-icon>
+                QUERY
+            </ng-template>
+            Content 2
+        </mat-tab>
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">receipt</mat-icon>
+                REPORT
+            </ng-template>
+            <mat-grid-list [cols]="breakpoint" rowHeight="220px" class="cover" (window:resize)="handleSize($event)">
+                <mat-grid-tile class="logoandtext">
+                    <div class="container">
+                        <img src="./assets/CompanyLogos/Amazon.webp" alt="Amazon" class="resizelogo">
+                        <p class="companytype">Professional company</p>
+                        <p class="salarycol"><span class="avgsal">Average Salary(LPA):</span>20 Lakhs</p>
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile class="logoandtext">
+                    <div class="container">
+                        <img src="./assets/CompanyLogos/AshokLeyland.webp" alt="AshokLeyland" class="resizelogo">
+                        <p class="companytype">Professional company</p>
+                        <p class="salarycol"><span class="avgsal">Average Salary(LPA):</span>5 Lakhs</p>
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile class="logoandtext">
+                    <div class="container">
+                        <img src="./assets/CompanyLogos/IBM.webp" alt="IBM" class="resizelogo">
+                        <p class="companytype">Professional company</p>
+                        <p class="salarycol"><span class="avgsal">Average Salary(LPA):</span>8 Lakhs</p>
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile class="logoandtext" (click)="callDialog(4)">
+                    <div class="container">
+                        <img src="./assets/CompanyLogos/Accenture.webp" alt="Accenture" class="resizelogo">
+                        <p class="companytype">Professional Service company</p>
+                        <p class="salarycol"><span class="avgsal">Average Salary(LPA):</span>6 Lakhs</p>
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile class="logoandtext">
+                    <div class="container">
+                        <img src="./assets/CompanyLogos/Ford.webp" alt="Ford" class="resizelogo">
+                        <p class="companytype">Professional company</p>
+                        <p class="salarycol"><span class="avgsal">Average Salary(LPA):</span>6 Lakhs</p>
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile class="logoandtext">
+                    <div class="container">
+                        <img src="./assets/CompanyLogos/Zoho.webp" alt="Zoho" class="resizelogo">
+                        <p class="companytype">Professional company</p>
+                        <p class="salarycol"><span class="avgsal">Average Salary(LPA):</span>8 Lakhs</p>
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile class="logoandtext">
+                    <div class="container">
+                        <img src="./assets/CompanyLogos/Infosys.webp" alt="Infosys" class="resizelogo">
+                        <p class="companytype">Professional company</p>
+                        <p class="salarycol"><span class="avgsal">Average Salary(LPA):</span>13 Lakhs</p>
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile class="logoandtext">
+                    <div class="container">
+                        <img src="./assets/CompanyLogos/Pega.webp" alt="Pega" class="resizelogo">
+                        <p class="companytype">Professional company</p>
+                        <p class="salarycol"><span class="avgsal">Average Salary(LPA):</span>15 Lakhs</p>
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile class="logoandtext">
+                    <div class="container">
+                        <img src="./assets/CompanyLogos/Kaar.webp" alt="Kaar" class="resizelogo">
+                        <p class="companytype">Professional company</p>
+                        <p class="salarycol"><span class="avgsal">Average Salary(LPA):</span>7 Lakhs</p>
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile class="logoandtext">
+                    <div class="container">
+                        <img src="./assets/CompanyLogos/Cognizant.webp" alt="Cognizant" class="resizelogo">
+                        <p class="companytype">Professional company</p>
+                        <p class="salarycol"><span class="avgsal">Average Salary(LPA):</span>5 Lakhs</p>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-tab>
+    </mat-tab-group>
+</div>
